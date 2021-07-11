@@ -214,7 +214,7 @@ func (d *DNSServer) answer(q dns.Question, remote net.Addr) ([]dns.RR, int, bool
 		// Make sure that we return NOERROR if there were dynamic records for the domain
 		rcode = dns.RcodeSuccess
 	}
-	log.WithFields(log.Fields{"qtype": dns.TypeToString[q.Qtype], "domain": q.Name, "rcode": dns.RcodeToString[rcode], "remoteAddr": remote.String()}).Debug("Answering question for domain")
+    log.WithFields(log.Fields{"qtype": dns.TypeToString[q.Qtype], "domain": q.Name, "rcode": dns.RcodeToString[rcode], "aa": authoritative, "remoteAddr": remote.String()}).Debug("Answering question for domain")
 	return r, rcode, authoritative, nil
 }
 
